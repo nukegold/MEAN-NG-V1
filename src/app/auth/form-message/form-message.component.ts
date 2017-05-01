@@ -1,15 +1,22 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, Input } from '@angular/core';
+import { FormControl } from '@angular/forms';
+
+import { FormValidatorsService } from '../../services/form-validators.service';
 
 @Component({
   selector: 'app-form-message',
-  templateUrl: './form-message.component.html',
-  styleUrls: ['./form-message.component.scss']
+  template: `<div class="text-danger" *ngIf="errorMessage !== null">{{ errorMessage }}</div>`
 })
-export class FormMessageComponent implements OnInit {
+export class FormMessageComponent {
+    @Input() control: FormControl;
 
-  constructor() { }
+    get errorMessage() {
+        for (let propertyName in this.control.errors) {
+            if (this.control.errors.hasOwnProperty(propertyName) && this.control.touched) {
+                return FormValidatorsService.getValidatorErrorMessage(propertyName, this.control.errors[propertyName]);
+            }
+        }
 
-  ngOnInit() {
-  }
-
+        return null;
+    }
 }

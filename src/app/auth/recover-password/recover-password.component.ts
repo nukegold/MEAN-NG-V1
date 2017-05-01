@@ -1,15 +1,42 @@
 import { Component, OnInit } from '@angular/core';
+import { FormGroup, FormControl, Validators } from '@angular/forms';
+
+import { User } from '../../models/user.model';
+import { FormValidatorsService } from '../../services/form-validators.service';
+import { AuthService } from '../../services/auth.service';
 
 @Component({
   selector: 'app-recover-password',
-  templateUrl: './recover-password.component.html',
-  styleUrls: ['./recover-password.component.scss']
+  templateUrl: './recover-password.component.html'
 })
 export class RecoverPasswordComponent implements OnInit {
+  mainForm: FormGroup;
+  errorMessage: String;
 
-  constructor() { }
+  constructor(private authService: AuthService) { }
 
-  ngOnInit() {
+  valid(control) {
+    return control.valid || !control.touched;
   }
 
+  onSubmit() {
+    const email = this.mainForm.value.inputEmail;
+    this.authService.recoverPassword(email)
+      .subscribe(
+      data => {
+        this.errorMessage = null;
+        this.mainForm.reset();
+      },
+      error => { this.errorMessage = error.error.message }
+      );
+  }
+
+  ngOnInit() {
+    this.mainForm = new FormGroup({
+      inputEmail: new FormControl(null, [
+        Validators.required,
+        FormValidatorsService.emailValidator
+      ])
+    });
+  }
 }

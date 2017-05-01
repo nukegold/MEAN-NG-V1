@@ -101,8 +101,8 @@ app.use(passport.initialize());
 app.use(passport.session()); // persistent login sessions
 
 // routes ========================================================
-app.use('/message', messageRoutes);
-app.use('/user', userRoutes);
+app.use('/api/message', messageRoutes);
+app.use('/api/user', userRoutes);
 app.use('/', appRoutes);
 
 // Catch all other routes and return the index file
