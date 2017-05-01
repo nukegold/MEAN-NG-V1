@@ -4,23 +4,19 @@ import { FormsModule } from '@angular/forms';
 import { HttpModule } from '@angular/http';
 
 import { AppRoutingModule } from './app-routing.module';
+import { SiteModule } from './site/site.module';
 import { AppComponent } from './app.component';
-import { SiteComponent } from './site/site.component';
-import { MessagesComponent } from './messages/messages.component';
-import { MessageComponent } from './messages/message/message.component';
 
 @NgModule({
   declarations: [
-    AppComponent,
-    SiteComponent,
-    MessagesComponent,
-    MessageComponent
+    AppComponent
   ],
   imports: [
     BrowserModule,
     FormsModule,
     HttpModule,
-    AppRoutingModule
+    AppRoutingModule,
+    SiteModule
   ],
   providers: [],
   bootstrap: [AppComponent]

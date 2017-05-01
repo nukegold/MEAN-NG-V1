@@ -33,7 +33,7 @@ export class ResetPasswordComponent implements OnInit {
                 this.errorMessage = null;
                 this.mainForm.reset();
                 this.success = true;
-                this.successMessage = "Password changed. You may now log into your account."
+                this.successMessage = 'Password changed. You may now log into your account.'
             },
             error => {
                 this.errorMessage = error.error.message
