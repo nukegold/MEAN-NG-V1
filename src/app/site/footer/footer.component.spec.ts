@@ -1,6 +1,11 @@
 import { async, ComponentFixture, TestBed } from '@angular/core/testing';
+import { FormsModule } from '@angular/forms';
+import { HttpModule } from '@angular/http';
 
 import { FooterComponent } from './footer.component';
+import { MessageInputComponent } from '../../messages/message-input/message-input.component';
+
+import { MessagesService } from '../../services/messages.service';
 
 describe('FooterComponent', () => {
   let component: FooterComponent;
@@ -8,9 +13,11 @@ describe('FooterComponent', () => {
 
   beforeEach(async(() => {
     TestBed.configureTestingModule({
-      declarations: [ FooterComponent ]
+      declarations: [FooterComponent, MessageInputComponent],
+      imports: [FormsModule, HttpModule],
+      providers: [MessagesService]
     })
-    .compileComponents();
+      .compileComponents();
   }));
 
   beforeEach(() => {

@@ -5,6 +5,7 @@ import { Router } from '@angular/router';
 import { User } from '../../models/user.model';
 import { FormValidatorsService } from '../../services/form-validators.service';
 import { AuthService } from '../../services/auth.service';
+import { FormErrorComponent } from '../form-error/form-error.component'
 
 @Component({
   selector: 'app-login',
@@ -15,6 +16,19 @@ export class LoginComponent implements OnInit {
   errorMessage: String;
 
   constructor(private authService: AuthService, private router: Router) { }
+
+  ngOnInit() {
+    this.loginForm = new FormGroup({
+      inputEmail: new FormControl(null, [
+        Validators.required,
+        FormValidatorsService.emailValidator
+      ]),
+      inputPassword: new FormControl(null,
+        Validators.required
+      ),
+      inputRememberMe: new FormControl(true)
+    });
+  }
 
   valid(control) {
     return control.valid || !control.touched;
@@ -28,23 +42,10 @@ export class LoginComponent implements OnInit {
       .subscribe(
       data => {
         this.errorMessage = null;
-        //this.router.navigateByUrl('/');
+        this.router.navigateByUrl('/');
       },
       error => { this.errorMessage = error.error.message }
       );
     this.loginForm.reset();
-  }
-
-  ngOnInit() {
-    this.loginForm = new FormGroup({
-      inputEmail: new FormControl(null, [
-        Validators.required,
-        FormValidatorsService.emailValidator
-      ]),
-      inputPassword: new FormControl(null,
-        Validators.required
-      ),
-      inputRememberMe: new FormControl(true)
-    });
   }
 }

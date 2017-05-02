@@ -1,6 +1,10 @@
 import { async, ComponentFixture, TestBed } from '@angular/core/testing';
+import { FormsModule } from '@angular/forms';
+import { HttpModule } from '@angular/http';
 
 import { MessageInputComponent } from './message-input.component';
+
+import { MessagesService } from '../../services/messages.service';
 
 describe('MessageInputComponent', () => {
   let component: MessageInputComponent;
@@ -8,9 +12,11 @@ describe('MessageInputComponent', () => {
 
   beforeEach(async(() => {
     TestBed.configureTestingModule({
-      declarations: [ MessageInputComponent ]
+      declarations: [MessageInputComponent],
+      imports: [HttpModule, FormsModule],
+      providers: [MessagesService]
     })
-    .compileComponents();
+      .compileComponents();
   }));
 
   beforeEach(() => {

@@ -1,15 +1,15 @@
 <div class="row msg_container" [class.base_sent]="isMe()" [class.base_receive]="!isMe()">
-    <div *ngIf="!isMe()" class="col-md-2 col-xs-2 avatar">
-        <img [src]="getProfileImgUrl()" class="img-responsive">
+  <div *ngIf="!isMe()" class="col-md-2 col-xs-2 avatar">
+    <img [src]="getProfileImgUrl()" class="img-responsive">
+  </div>
+  <div class="col-md-10 col-xs-10">
+    <div class="messages" [class.msg_sent]="isMe()" [class.msg_receive]="!isMe()">
+      <p>{{ message ? message.content : null }}</p>
+      <time *ngIf="!isMe()">{{ message.username }} • {{ getTimeStr() }}</time>
+      <time *ngIf="isMe()">{{ getTimeStr() }}</time>
     </div>
-    <div class="col-md-10 col-xs-10">
-        <div class="messages" [class.msg_sent]="isMe()" [class.msg_receive]="!isMe()">
-            <p>{{ message.content }}</p>
-            <time *ngIf="!isMe()">{{ message.username }} • {{ getTimeStr() }}</time>
-            <time *ngIf="isMe()">{{ getTimeStr() }}</time>
-        </div>
-    </div>
-    <div *ngIf="isMe()" class="col-md-2 col-xs-2 avatar">
-        <img [src]="getProfileImgUrl()" class="img-responsive">
-    </div>
+  </div>
+  <div *ngIf="isMe()" class="col-md-2 col-xs-2 avatar">
+    <img [src]="getProfileImgUrl()" class="img-responsive">
+  </div>
 </div>

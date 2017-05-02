@@ -15,14 +15,16 @@ export class MessageComponent {
   constructor(private messageService: MessagesService) { }
 
   isMe() {
-    return MessagesService.myId == this.message.userId;
+    return MessagesService.myId == (this.message ? this.message.userId : null);
   }
 
   getProfileImgUrl() {
-    return '/api/user/profile/' + this.message.userId;
+    return '/api/user/profile/' + (this.message ? this.message.userId : null);
   }
 
   getTimeStr() {
+    if (!this.message) return null;
+
     var seconds = (this.now - this.message.time) / 1000;
     if (seconds < 5) return 'now';
     if (seconds < 60) return Math.floor(seconds) + ' sec';

@@ -105,11 +105,12 @@ app.use('/api/message', messageRoutes);
 app.use('/api/user', userRoutes);
 app.use('/', appRoutes);
 
-// Catch all other routes and return the index file
-app.get('*', (req, res) => {
-  res.sendFile(path.join(__dirname, 'dist/index.html'));
+// catch 404 and forward to index
+app.use(function (req, res, next) {
+    res.redirect(req.protocol + '://' + req.headers.host);
 });
 
+// HTTP Server ===================================================
 const port = process.env.PORT || '3000';
 app.set('port', port);
 
@@ -117,9 +118,7 @@ server.listen(port);
 server.on('error', onError);
 server.on('listening', onListening);
 
-/**
- * Event listener for HTTP server "error" event.
- */
+// HTTP Server Events ============================================
 function onError(error) {
   if (error.syscall !== 'listen') {
     throw error;
@@ -144,9 +143,6 @@ function onError(error) {
   }
 }
 
-/**
- * Event listener for HTTP server "listening" event.
- */
 function onListening() {
   var addr = server.address();
   var bind = typeof addr === 'string' ?
