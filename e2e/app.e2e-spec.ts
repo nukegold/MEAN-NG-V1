@@ -7,8 +7,8 @@ describe('mean-ng-v1 App', () => {
     page = new MeanNgV1Page();
   });
 
-  it('should display message saying app works', () => {
+  it('should display message saying Login', () => {
     page.navigateTo();
-    expect(page.getParagraphText()).toEqual('app works!');
+    expect(page.getParagraphText()).toEqual('Login');
   });
 });

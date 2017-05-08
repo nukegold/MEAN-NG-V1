@@ -5,7 +5,7 @@ import { FormsModule } from '@angular/forms';
 import { SiteComponent } from './site.component';
 import { HeaderComponent } from './header/header.component';
 import { FooterComponent } from './footer/footer.component';
-import { MessagesComponent } from '../messages/messages.component'
+import { MessagesComponent } from '../messages/messages.component';
 import { MessageComponent } from '../messages/message/message.component';
 import { MessageInputComponent } from '../messages/message-input/message-input.component';
 

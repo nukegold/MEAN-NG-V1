@@ -1,14 +1,14 @@
 import { Injectable, EventEmitter } from '@angular/core';
 import { Http, Response, Headers } from '@angular/http';
 import 'rxjs/Rx';
-import { Observable } from 'rxjs';
+import { Observable } from 'rxjs/Observable';
 
 import { Message } from '../models/message.model';
 
 @Injectable()
 export class MessagesService {
-  private messages: Message[] = [];
   static myId: string = null;
+  private messages: Message[] = [];
 
   constructor(private http: Http) {
   }
@@ -29,8 +29,8 @@ export class MessagesService {
     return this.http.get('/api/message')
       .map((response: Response) => {
         const data = response.json();
-        let transformedMessages: Message[] = [];
-        for (let message of data.obj.messages) {
+        const transformedMessages: Message[] = [];
+        for (const message of data.obj.messages) {
           transformedMessages.push(new Message(
             message.content,
             message.user.generalInfo.fullName,

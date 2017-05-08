@@ -12,6 +12,8 @@ import { AuthService } from '../../services/auth.service';
 export class RegisterComponent implements OnInit {
   registerForm: FormGroup;
   errorMessage: String;
+  inputPassword = new FormControl(null);
+  inputPassword2 = new FormControl(null);
 
   constructor(private authService: AuthService) { }
 
@@ -32,12 +34,9 @@ export class RegisterComponent implements OnInit {
         this.registerForm.reset();
         this.errorMessage = null;
       },
-      error => { this.errorMessage = error.error.message }
+      error => { this.errorMessage = error.error.message; }
       );
   }
-
-  inputPassword = new FormControl(null);
-  inputPassword2 = new FormControl(null);
 
   ngOnInit() {
     this.inputPassword.setValidators([

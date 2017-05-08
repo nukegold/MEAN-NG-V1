@@ -68,7 +68,7 @@ export class AuthService {
     return this.http.get('/api/user/getuser')
       .map((response: Response) => response.json())
       .catch((error: Response) => {
-        var errobj = error.json();
+        const errobj = error.json();
         errobj['status'] = error.status;    // tuck the status code into the response
 
         return Observable.throw(errobj);

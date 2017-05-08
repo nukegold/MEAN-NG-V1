@@ -4,7 +4,7 @@ import { Injectable } from '@angular/core';
 @Injectable()
 export class FormValidatorsService {
   static getValidatorErrorMessage(validatorName: string, validatorValue?: any) {
-    let config = {
+    const config = {
       'required': 'Required field',
       'invalidEmailAddress': 'Invalid email address',
       'invalidPassword': 'Password must be at least 6 characters long, and contain a number',
@@ -18,6 +18,7 @@ export class FormValidatorsService {
 
   static emailValidator(control) {
     // RFC 2822 compliant regex
+    // tslint:disable-next-line:max-line-length
     if (control.value && control.value.match(/[a-z0-9!#$%&'*+/=?^_`{|}~-]+(?:\.[a-z0-9!#$%&'*+/=?^_`{|}~-]+)*@(?:[a-z0-9](?:[a-z0-9-]*[a-z0-9])?\.)+[a-z0-9](?:[a-z0-9-]*[a-z0-9])?/)) {
       return null;
     } else {
@@ -37,7 +38,7 @@ export class FormValidatorsService {
 
   static passwordCompare = (control1: FormControl, reverse: boolean = false) => {
     return (control2: FormControl) => {
-      if (control1.value == control2.value) {
+      if (control1.value === control2.value) {
         if (reverse) {
           control1.setErrors(null);
         }
@@ -49,6 +50,6 @@ export class FormValidatorsService {
         }
         return { 'passwordMissmatch': true };
       }
-    }
+    };
   }
 }

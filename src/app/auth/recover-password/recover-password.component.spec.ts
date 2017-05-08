@@ -3,7 +3,7 @@ import { ReactiveFormsModule } from '@angular/forms';
 import { HttpModule } from '@angular/http';
 import { RouterTestingModule } from '@angular/router/testing';
 
-import { FormErrorComponent } from '../form-error/form-error.component'
+import { FormErrorComponent } from '../form-error/form-error.component';
 import { FormMessageComponent } from '../form-message/form-message.component';
 import { RecoverPasswordComponent } from './recover-password.component';
 

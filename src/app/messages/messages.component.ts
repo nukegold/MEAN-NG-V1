@@ -21,6 +21,8 @@ import { CommService } from '../services/comm.service';
 export class MessagesComponent implements OnInit, AfterViewChecked {
   messages: Message[];
   private needToScroll = false;
+  private timeout = null;
+  private lastItem = null;
 
   constructor(private messageService: MessagesService, private commService: CommService) { }
 
@@ -35,7 +37,7 @@ export class MessagesComponent implements OnInit, AfterViewChecked {
 
     this.commService.getMessages()
       .subscribe(data => {
-        var msg = data['message'];
+        const msg = data['message'];
         this.messages.push(
           new Message(
             msg['content'],
@@ -48,20 +50,18 @@ export class MessagesComponent implements OnInit, AfterViewChecked {
       });
   }
 
-  private timeout = null;
-  private lastItem = null;
   public ngAfterViewChecked(): void {
     /* need _canScrollDown because it triggers even if you enter text in the textarea */
 
-    let currentLastItem = this.messages ? this.messages[this.messages.length - 1] : null;
+    const currentLastItem = this.messages ? this.messages[this.messages.length - 1] : null;
     if (currentLastItem && this.lastItem !== currentLastItem) {
       this.lastItem = currentLastItem;
 
       clearTimeout(this.timeout);
       this.timeout = setTimeout(() => {
-        let body = document.body;
+        const body = document.body;
         body.scrollTop = body.scrollHeight - 100;
-      }, 500)
+      }, 500);
 
     }
   }

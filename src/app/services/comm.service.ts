@@ -16,7 +16,7 @@ export class CommService {
   }
 
   getMessages() {
-    let observable = new Observable(observer => {
+    const observable = new Observable(observer => {
       this.socket = io(environment.serverUrl);
       this.socket.on(NEW_MSG, data => {
         observer.next(data);
@@ -24,7 +24,7 @@ export class CommService {
 
       return () => {
         this.socket.disconnect();
-      }
+      };
     });
 
     return observable;

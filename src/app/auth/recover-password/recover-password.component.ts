@@ -27,7 +27,7 @@ export class RecoverPasswordComponent implements OnInit {
         this.errorMessage = null;
         this.mainForm.reset();
       },
-      error => { this.errorMessage = error.error.message }
+      error => { this.errorMessage = error.error.message; }
       );
   }
 

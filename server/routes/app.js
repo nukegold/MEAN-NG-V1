@@ -3,9 +3,9 @@ var router = express.Router();
 
 router.get('/', function (req, res, next) {
   if (req.baseUrl.startsWith('/auth') || req.isAuthenticated())
-    res.redirect(req.protocol + '://' + req.headers.host);
+    res.render('index');
   else
-    res.redirect(req.protocol + '://' + req.headers.host + '/auth/login');
+    res.redirect('/auth/login');
 });
 
 module.exports = router;

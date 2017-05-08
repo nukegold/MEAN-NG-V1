@@ -5,7 +5,7 @@ import { Router } from '@angular/router';
 import { User } from '../../models/user.model';
 import { FormValidatorsService } from '../../services/form-validators.service';
 import { AuthService } from '../../services/auth.service';
-import { FormErrorComponent } from '../form-error/form-error.component'
+import { FormErrorComponent } from '../form-error/form-error.component';
 
 @Component({
   selector: 'app-login',
@@ -44,7 +44,7 @@ export class LoginComponent implements OnInit {
         this.errorMessage = null;
         this.router.navigateByUrl('/');
       },
-      error => { this.errorMessage = error.error.message }
+      error => { this.errorMessage = error.error.message; }
       );
     this.loginForm.reset();
   }

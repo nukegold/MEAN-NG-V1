@@ -28,6 +28,8 @@ import { AuthService } from '../../services/auth.service';
   styles: ['nav { min-width: 350px }']
 })
 export class HeaderComponent {
+  user = { name: '...' };
+
   constructor(private authService: AuthService, private router: Router) {
     this.getUser();
   }
@@ -37,16 +39,15 @@ export class HeaderComponent {
     this.router.navigateByUrl('/auth/login');
   }
 
-  user = { name: '...' };
-
   getUser() {
     this.authService.getUser().subscribe(
       data => {
         this.user = data.obj;
       },
       error => {
-        if (error.status === 401) this.logout();
-        else {
+        if (error.status === 401) {
+          this.logout();
+        } else {
           console.error(error);
         }
       }

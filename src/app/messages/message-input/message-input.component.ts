@@ -16,9 +16,9 @@ export class MessageInputComponent {
         const message = new Message(form.value.content, 'Me');
         this.messagesService.addMessage(message)
             .subscribe(
-            data => {},
+            data => { },
             error => console.error(error)
-        );
+            );
 
         form.resetForm();
     }

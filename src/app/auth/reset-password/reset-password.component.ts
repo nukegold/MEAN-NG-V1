@@ -7,15 +7,16 @@ import { FormValidatorsService } from '../../services/form-validators.service';
 import { AuthService } from '../../services/auth.service';
 
 @Component({
-  selector: 'app-reset-password',
-  templateUrl: './reset-password.component.html'
+    selector: 'app-reset-password',
+    templateUrl: './reset-password.component.html'
 })
 export class ResetPasswordComponent implements OnInit {
     mainForm: FormGroup;
     errorMessage: String;
-
     successMessage: String;
     success: Boolean = false;
+    inputPassword = new FormControl(null);
+    inputPassword2 = new FormControl(null);
 
     private token;
 
@@ -33,16 +34,11 @@ export class ResetPasswordComponent implements OnInit {
                 this.errorMessage = null;
                 this.mainForm.reset();
                 this.success = true;
-                this.successMessage = 'Password changed. You may now log into your account.'
+                this.successMessage = 'Password changed. You may now log into your account.';
             },
-            error => {
-                this.errorMessage = error.error.message
-            }
+            error => { this.errorMessage = error.error.message; }
             );
     }
-
-    inputPassword = new FormControl(null);
-    inputPassword2 = new FormControl(null);
 
     ngOnInit() {
         this.route.params.subscribe(params => {
