@@ -1,5 +1,6 @@
 # MEAN-NG Version 1 (messaging app)
-This project expands on my [MEAN-NG Phase 0](https://github.com/nukegold/mean-ng-phase0) scaffold. 
+This project expands on my [MEAN-NG Phase 0](https://github.com/nukegold/mean-ng-phase0) scaffold.
+Find the full story on how this project came together [here](https://medium.com/@nukegold/a-mean-full-stack-machine-part-3-499bf8f70c63)
 
 A simple MEAN messaging client and server using Angular CLI as a base.
 Key features include: 
